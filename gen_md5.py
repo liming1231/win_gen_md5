@@ -40,20 +40,34 @@ if __name__ == '__main__':
         print ("\nusaging: \n\tpython.exe gen_md5.py \'file path\'\n")
     else:
         path_m = sys.argv[1]
-        for root, dirs, files in os.walk(path_m):
-            for file in files:
-                path = os.path.join(root, file)
-                # m_md5 = get_file_md5(r"D:\workspace\ax_board\ax_robot\1.0.7\MDK\output\bsbd_1.0.6-AOB02U1_app1.bin")
-                if path[-3:] == "bin":
-                    print ("src:\t" + path)
-                    m_md5 = get_file_md5(path)
-                    if not m_md5:
-                        print("123456")
-                    else:
-                        MD5_flie = path[0:-4]+"_md5.txt"
-                        with open(MD5_flie,'w+') as md5_fp:
-                            md5_fp.write(m_md5.upper())
-                            print ("dst:\t" + MD5_flie)
-                            print ('md5\t'+m_md5.upper())
-                            print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+        print(path_m)
+        if path_m[-3:] == "bin":
+            print ("src:\t" + path_m)
+            m_md5 = get_file_md5(path_m)
+            if not m_md5:
+                print("123456")
+            else:
+                MD5_flie = path_m[0:-4]+"_md5.txt"
+                with open(MD5_flie,'w+') as md5_fp:
+                    md5_fp.write(m_md5.upper())
+                    print ("dst:\t" + MD5_flie)
+                    print ('md5\t'+m_md5.upper())
+                    print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+        else:
+            for root, dirs, files in os.walk(path_m):
+                for file in files:
+                    path = os.path.join(root, file)
+                    # m_md5 = get_file_md5(r"D:\workspace\ax_board\ax_robot\1.0.7\MDK\output\bsbd_1.0.6-AOB02U1_app1.bin")
+                    if path[-3:] == "bin":
+                        print ("src:\t" + path)
+                        m_md5 = get_file_md5(path)
+                        if not m_md5:
+                            print("123456")
+                        else:
+                            MD5_flie = path[0:-4]+"_md5.txt"
+                            with open(MD5_flie,'w+') as md5_fp:
+                                md5_fp.write(m_md5.upper())
+                                print ("dst:\t" + MD5_flie)
+                                print ('md5\t'+m_md5.upper())
+                                print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
                     
